@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!-- 
+  جميع الحقوق محفوظة © 2025
+  هذا الكود ملك خاص 
+  لا يُسمح بنسخه أو إعادة استخدامه أو تعديله دون إذن مسبق.
+-->
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تهنئة عيد الأضحى</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      overscroll-behavior: none;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-image: url('image.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 2s ease-in-out;
+      opacity: 0;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 400px;
+      height: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #28a745;
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 5px 0;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .emoji {
+      font-size: 30px;
+      position: absolute;
+      animation: float 4s linear infinite;
+      max-height: 100vh;
+      max-width: 100vw;
+      overflow: hidden;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-10vh) rotate(360deg); }
+    }
+    .footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  z-index: 100;
+  text-shadow: 1px 1px 3px black;
+}
+  </style>
+</head>
+<body ontouchmove="event.preventDefault()" style="touch-action: none;">
+  <canvas id="confetti" class="confetti"></canvas>
+
+  <div class="container">
+    <h1>✨ عيد أضحى مبارك ✨</h1>
+    <p>لأجل أننا مسلمون وتعظيم شعائر الله فريضة</p>
+    <p>كل❤️عام❤️وانتم❤️بخير</p>
+    <button onclick="shareCustomLink()">مشاركة التهنئة</button>
+  </div>
+
+  <audio id="eidAudio" src="eid.mp3" preload="auto"></audio>
+  <audio id="backgroundMusic" src="happy-music.mp3" loop></audio>
+<footer class="footer">
+  &copy; <span id="year"></span> جميع الحقوق محفوظة تصميم و برمجه Y.M.S.A
+</footer>
+<!-- Using canvas-confetti library (MIT License) -->
+  <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
+
+  <script>
+    function shareCustomLink() {
+      const customURL = "https://example.com/your-custom-page";
+      const message = `تهنئة عيد الأضحى المبارك! تصفح الرابط: ${customURL}`;
+      const audio = document.getElementById("eidAudio");
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'عيد مبارك',
+          text: message,
+          url: customURL
+        }).then(() => {
+          audio.play();
+        }).catch(() => {
+          audio.play();
+        });
+      } else {
+        window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        audio.play();
+      }
+    }
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const confetti = new ConfettiGenerator({ target: 'confetti' });
+      confetti.render();
+
+      for (let i = 0; i < 20; i++) {
+        let emoji = document.createElement("div");
+        emoji.classList.add("emoji");
+        emoji.innerHTML = ["🥳", "🎉", "🎊", "💞", "✨"][Math.floor(Math.random() * 5)];
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(emoji);
+      }
+
+      let bgMusic = document.getElementById("backgroundMusic");
+      let musicPlayed = false;
+
+      document.body.addEventListener("click", () => {
+        if (!musicPlayed) {
+          bgMusic.play().catch(() => {});
+          musicPlayed = true;
+        }
+      });
+    });
+
+    window.onload = function () {
+      document.body.classList.add("loaded");
+    };
+  </script>
+</body>
+</html>
