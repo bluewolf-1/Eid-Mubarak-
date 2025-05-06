@@ -39,14 +39,20 @@
       opacity: 1;
     }
 
+    .center-container {
+      position: fixed;
+      top: 25%;
+      left: 25%;
+      transform: translate(-10%, -10%);
+      z-index: 10;
+    }
+
     .container {
       width: 80%;
       max-width: 400px;
-      height: 50%;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      z-index: 10;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -104,36 +110,63 @@
       0% { transform: translateY(100vh) rotate(0deg); }
       100% { transform: translateY(-10vh) rotate(360deg); }
     }
+
     .footer {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 14px;
-  z-index: 100;
-  text-shadow: 1px 1px 3px black;
-}
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+      z-index: 100;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    .ad-banner {
+      position: fixed;
+      bottom: 70px;
+      right: 50px;
+      z-index: 50;
+      width: 320px;
+      height: 50px;
+    }
   </style>
 </head>
 <body ontouchmove="event.preventDefault()" style="touch-action: none;">
   <canvas id="confetti" class="confetti"></canvas>
 
-  <div class="container">
-    <h1>✨ عيد أضحى مبارك ✨</h1>
-    <p>لأجل أننا مسلمون وتعظيم شعائر الله فريضة</p>
-    <p>كل❤️عام❤️وانتم❤️بخير</p>
-    <button onclick="shareCustomLink()">مشاركة التهنئة</button>
+  <!-- اللافتة البيضاء في المنتصف -->
+  <div class="center-container">
+    <div class="container">
+      <h1>✨ عيد أضحى مبارك ✨</h1>
+      <p>لأجل أننا مسلمون وتعظيم شعائر الله فريضة</p>
+      <p>كل❤️عام❤️وانتم❤️بخير</p>
+      <button onclick="shareCustomLink()">مشاركة التهنئة</button>
+    </div>
+  </div>
+
+  <!-- إعلان بانر في الزاوية -->
+  <div class="ad-banner">
+  <script type="text/javascript">
+	atOptions = {
+		'key' : '7660237c49046ccb95ff74fde4762826',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/7660237c49046ccb95ff74fde4762826/invoke.js"></script>
   </div>
 
   <audio id="eidAudio" src="eid.mp3" preload="auto"></audio>
   <audio id="backgroundMusic" src="happy-music.mp3" loop></audio>
-<footer class="footer">
-  &copy; <span id="year"></span> جميع الحقوق محفوظة تصميم و برمجه 
-</footer>
-<!-- Using canvas-confetti library (MIT License) -->
-  <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
 
+  <footer class="footer">
+    &copy; <span id="year"></span> جميع الحقوق محفوظة تصميم و برمجه
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
   <script>
     function shareCustomLink() {
       const customURL = "https://direct-link.net/1341002/eid-mubarak";
@@ -156,7 +189,7 @@
       }
     }
 
-document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
     document.addEventListener("DOMContentLoaded", function () {
       const confetti = new ConfettiGenerator({ target: 'confetti' });
@@ -185,16 +218,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
     window.onload = function () {
       document.body.classList.add("loaded");
     };
-    <script type="text/javascript">
-	atOptions = {
-		'key' : '741f268d604122bbe939635794ca0b17',
-		'format' : 'iframe',
-		'height' : 300,
-		'width' : 160,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/741f268d604122bbe939635794ca0b17/invoke.js"></script>
   </script>
 </body>
 </html>
